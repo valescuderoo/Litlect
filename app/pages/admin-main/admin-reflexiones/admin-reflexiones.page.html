@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Botón de atrás -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ bookTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Mensaje de carga -->
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  
+  <!-- Mensaje de error -->
+  <div *ngIf="!loading && errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <!-- Mensaje cuando no hay reflexiones -->
+  <div *ngIf="!loading && !errorMessage && reflections.length === 0" class="no-reflections-message">
+    No hay reflexiones disponibles.
+  </div>
+
+  <!-- Lista de reflexiones -->
+  <ion-list *ngIf="!loading && !errorMessage && reflections.length > 0">
+    <ion-item *ngFor="let reflection of reflections; let i = index" class="reflection-item">
+      <ion-avatar slot="start">
+        <ion-icon name="person-circle" class="user-icon"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <p>Usuario: {{ reflection.userName }}</p>
+        <p>{{ reflection.text }}</p>
+        <p><small>{{ reflection.createdAt.toDate() | date: 'short' }}</small></p>
+      </ion-label>
+      <ion-button 
+        *ngIf="isAdmin" 
+        class="delete-button" 
+        (click)="deleteReflection(reflection.userId, reflection.productId, reflection.id, i)">
+        Eliminar Reflexión
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

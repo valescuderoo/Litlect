@@ -1,0 +1,75 @@
+/* Contenedor principal */
+.purpose-container {
+  text-align: center;
+  padding: 20px;
+  color: #ffffff;
+}
+
+/* Logo */
+.purpose-logo {
+  width: 190px; /* Tamaño del logo */
+  height: auto;
+  margin: 0 auto 0 auto; /* Centrado con espacio inferior */
+  border-radius: 10px; /* Bordes ligeramente redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6); /* Sombra para darle profundidad */
+  border: 2px solid #9b6fe2; /* Borde morado para que destaque */
+}
+
+/* Título */
+.purpose-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Descripción */
+.purpose-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #c0c0c0; /* Gris claro */
+}
+
+/* Beneficios */
+.purpose-benefits {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.purpose-benefits h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.purpose-benefits ul {
+  list-style: none; /* Sin viñetas */
+  padding: 0;
+}
+
+.purpose-benefits li {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #c0c0c0;
+  margin-bottom: 10px;
+  padding-left: 25px;
+}
+
+.purpose-benefits li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #9b6fe2;
+  font-size: 1.2rem;
+}
+
+/* Botón */
+.return-button {
+  --background: #9b6fe2; /* Fondo lila */
+  --color: white;
+  --border-radius: 8px;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+}

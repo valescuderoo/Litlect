@@ -1,0 +1,51 @@
+<app-header title="Inicio"></app-header>
+<ion-content>
+  <div class="d-flex-center">
+    <form  class="auth-form"> 
+      <app-logo></app-logo>
+
+      <!-- Botón para ver productos -->
+      <ion-button
+        class="ion-margin-top"
+        routerLink="/products2"
+        routerLinkActive="router-link-active"
+        expand="block"
+        mode="ios"
+        fill="outline"
+      >
+        Ver
+        <ion-icon slot="end" name="chatbubble-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Botón para iniciar sesión -->
+      <ion-button
+        class="ion-margin-top"
+        routerLink="/auth"
+        routerLinkActive="router-link-active"
+        expand="block"
+        mode="ios"
+        fill="outline"
+      >
+        Iniciar Sesión
+        <ion-icon slot="end" name="person-add-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Botón para registrarse -->
+      <ion-button
+        class="ion-margin-top"
+        routerLink="/auth/sign-up"
+        routerLinkActive="router-link-active"
+        expand="block"
+        mode="ios"
+        fill="outline"
+      >
+        Regístrate
+        <ion-icon slot="end" name="person-add-outline"></ion-icon>
+      </ion-button>
+    </form>
+  </div>
+  <ion-button fill="clear" expand="block"  routerLink="/purpose" class="text-button">
+    Conoce el propósito de esta app
+  </ion-button>
+
+</ion-content>

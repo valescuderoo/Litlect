@@ -1,0 +1,36 @@
+.image-icon{
+    font-size: 100px;
+    opacity: 30;
+}
+
+ion-avatar{
+    width: 200px;
+    height: 100px;
+    --border-radius: 15px;
+    margin: 0 auto;
+}
+/* Fondo gris para ion-content */
+ion-content {
+    --background: #2c2c2c;  /* Gris claro */
+  }
+  
+  /* Estilo de los botones */
+  ion-button {
+    --background: #9b6fe2;  /* Morado */
+    --color: white;         /* Texto blanco */
+    --border-radius: 12px;  /* Bordes redondeados */
+  }
+/* Asegúrate de que el texto dentro de los mensajes de validación tenga color blanco */
+.validators div {
+    color: white;  /* Establece el color blanco */
+  }
+  
+/* Establece color blanco en los textos de los mensajes de validación */
+form .validators div {
+    color: white !important; /* Utiliza !important para asegurar que el estilo se aplique */
+  }
+  ::ng-deep .validators div {
+    color: white !important; /* Asegura que el texto sea blanco */
+    background-color: transparent; /* El fondo no debería interferir */
+  }
+  

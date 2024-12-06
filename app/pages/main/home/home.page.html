@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <app-header [showMenu]="true" title="Mis Libros"></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+ </ion-refresher>
+
+
+ <!-- Tarjetas de productos -->
+ <div *ngIf="!loading" class="product-grid">
+  <ion-card *ngFor="let p of products" class="product-card">
+
+    <div class="product-image-container">
+      <img [src]="p.image" class="product-image" />
+    </div>
+    
+    <ion-card-content>
+      <div class="category"><strong>Titulo</strong></div>
+      {{ p.name }}
+      <div class="category"><strong>Autor</strong></div>
+      {{ p.autor }}
+      <div class="category"><strong>Categoria</strong></div>
+      {{ p.categoria }}
+      <div class="description"><strong>Descripción</strong></div>
+      {{ p.descripcion }}
+    </ion-card-content>
+    
+    <!-- Botones de opciones -->
+    <ion-row class="options-row">
+      <ion-col>
+        <ion-button fill="clear" color="primary" (click)="addUpdateProduct(p)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" color="danger" (click)="confirmDeleteProduc(p)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</div>
+
+<!-- Mensaje cuando no hay productos -->
+<div *ngIf="!loading && !products.length" class="empty">
+  <ion-icon name="shield-outline"></ion-icon>
+  <h3>No hay libros</h3>
+</div>
+
+<!-- Botón para añadir nuevo producto -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addUpdateProduct()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

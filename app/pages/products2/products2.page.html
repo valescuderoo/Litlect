@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+        <!-- Botón de atrás -->
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/inicio"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Libros</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearchBar()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="toggleCategoryFilter()">
+        <ion-icon name="funnel-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="showSearchBar">
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      (ionInput)="searchProducts()"
+      debounce="300"
+      placeholder="Buscar productos"
+    ></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="showCategoryFilter">
+    <ion-item lines="none">
+      <ion-select
+        [(ngModel)]="selectedCategory"
+        (ionChange)="filterProducts()"
+        placeholder="Seleccionar categoría"
+      >
+        <ion-select-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </ion-select-option>
+      </ion-select>
+      <ion-button fill="clear" color="medium" (click)="clearFilter()">
+        Limpiar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+  <!-- Buscador -->
+   
+
+  <!-- Template de carga para mostrar mientras loading es true -->
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando productos...</p>
+    </div>
+  </ng-template>
+
+  <!-- Mostrar productos si no está cargando -->
+  <div *ngIf="!loading; else loadingTemplate" class="product-grid">
+    <ion-card *ngFor="let product of filteredProducts" class="product-card">
+      <div class="product-image-container">
+        <img [src]="product.image" alt="Imagen del producto" class="product-image" />
+      </div>
+      <ion-card-content>
+        <h2>{{ product.name }}</h2>
+        <p><strong>Categoría:</strong> {{ product.categoria }}</p>
+        <p><strong>Descripción:</strong> {{ product.descripcion }}</p>
+        <p><strong>Autor:</strong> {{ product.autor }}</p>
+
+                <!-- Botón para ver reflexiones -->
+                <ion-button 
+                expand="block" 
+                (click)="verReflexiones()"
+        
+                class="ion-margin-top"
+                mode="ios"
+                fill="outline">
+                  Ver Reflexiones
+                </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Mostrar mensaje si no hay productos -->
+  <div *ngIf="!loading && !filteredProducts.length" class="empty">
+    <ion-icon name="shield-outline"></ion-icon>
+    <h3>No hay productos</h3>
+  </div>
+</ion-content>

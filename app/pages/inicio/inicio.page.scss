@@ -1,0 +1,40 @@
+/* Estilos globales de ion-button (se mantienen) */
+ion-button {
+  --background: #9b6fe2; /* Fondo morado */
+  --color: white; /* Texto blanco */
+  --border-color: #9b6fe2; /* Borde morado */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+ion-button[disabled] {
+  --background: #d3d3d3; /* Fondo gris para botones deshabilitados */
+  --color: #ffffff;
+  --border-color: #d3d3d3;
+}
+
+ion-button[fill="outline"] {
+  --background: transparent;
+  --color: #9b6fe2; /* Texto morado */
+  --border-color: #9b6fe2; /* Borde morado */
+}
+
+/* Estilo específico para .text-button */
+.text-button {
+  font-size: 0.9rem; /* Tamaño de texto */
+  text-transform: none; /* No transformar texto */
+  color: white; /* Texto blanco */
+  --background: none; /* Sin fondo */
+  --color: white; /* Asegurar texto blanco */
+  --border-color: none; /* Sin borde */
+  border: none; /* Quitar borde explícitamente */
+  padding: 0; /* Sin padding */
+  box-shadow: none; /* Sin sombra */
+  position: absolute; /* Posicionarlo de forma fija */
+  bottom: 20px; /* Alineado abajo */
+  right: 20px; /* Alineado a la derecha */
+}
+
+.text-button:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+  color: #9b6fe2; /* Color morado al pasar el mouse */
+}

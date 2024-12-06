@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <app-header [showMenu]="true" title="Libros"></app-header>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearchBar()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="toggleCategoryFilter()">
+        <ion-icon name="funnel-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="showSearchBar">
+    <ion-searchbar 
+      [(ngModel)]="searchText" 
+      (ionInput)="searchProducts()" 
+      debounce="300" 
+      placeholder="Escribe el nombre del libro">
+    </ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="showCategoryFilter">
+    <ion-item lines="none">
+      <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterProducts()" placeholder="Seleccionar categoría">
+        <ion-select-option value="Romance/Drama">Romance/Drama</ion-select-option>
+        <ion-select-option value="Ciencia/Ficcion">Ciencia/Ficción</ion-select-option>
+        <ion-select-option value="Misterio/Thriller">Misterio/Thriller</ion-select-option>
+        <ion-select-option value="Poesia">Poesía</ion-select-option>
+        <ion-select-option value="Fantasia">Fantasía</ion-select-option>
+        <ion-select-option value="Historia">Historia</ion-select-option>
+      </ion-select>
+      <ion-button fill="clear" color="medium" (click)="clearFilter()" class="clear-filter-button">
+        Limpiar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando productos...</p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="!loading; else loadingTemplate" class="product-grid">
+    <ion-card *ngFor="let product of filteredProducts; let i = index" class="product-card">
+      <div class="product-card-content">
+        <div class="product-image-container">
+          <img [src]="product.image" alt="Imagen del producto" class="product-image" />
+        </div>
+
+        <div class="product-text-container">
+          <ion-card-content>
+            <h2>{{ product.name }}</h2>
+            <p><strong>Categoría:</strong> {{ product.categoria }}</p>
+            <p><strong>Descripción:</strong> {{ product.descripcion }}</p>
+
+            <div class="button-container">
+              <ion-button 
+                expand="block" 
+                (click)="goToReflectionDetails(product.id)"
+                class="view-button"
+                mode="ios"
+                fill="outline">
+                Ver Reflexiones
+              </ion-button>
+            
+              <ion-button 
+                fill="clear" 
+                color="danger" 
+                class="delete-button" 
+                (click)="deleteProduct(product)">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+            
+          
+
+            <div *ngIf="showReflections[i]" class="reflections-section">
+              <h4>Reflexiones:</h4>
+              <p *ngFor="let reflection of product.reflections">
+                {{ reflection.text }}
+              </p>
+            </div>
+          </ion-card-content>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!loading && !filteredProducts.length" class="empty">
+    <ion-icon name="shield-outline"></ion-icon>
+    <h3>No hay productos</h3>
+  </div>
+</ion-content>

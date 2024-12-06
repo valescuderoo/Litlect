@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ bookTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar spinner mientras se cargan las reflexiones -->
+  <div *ngIf="loading" class="spinner-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando reflexiones...</p>
+  </div>
+
+  <!-- Mostrar lista de reflexiones cuando se hayan cargado -->
+  <ion-list *ngIf="!loading && !errorMessage">
+    <ion-item *ngFor="let reflection of reflections" class="reflection-item">
+      <ion-avatar slot="start">
+        <ion-icon name="person-circle" class="user-icon"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <p>Usuario: {{ reflection.userName }}</p>
+        <p>{{ reflection.text }}</p>
+        <p><small>{{ reflection.createdAt.toDate() | date: 'short' }}</small></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mostrar mensaje de error si ocurre un problema -->
+  <div *ngIf="!loading && errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+</ion-content>

@@ -1,0 +1,39 @@
+<app-header [showMenu]="true" title="Perfil"></app-header>  
+<ion-content class="ion-padding-top ion-text-center">
+
+  <ion-avatar>
+    <img *ngIf="user()?.image" [src]="user()?.image" />
+
+    <ion-icon *ngIf="!user()?.image" class="empty-icon" name="person-circle-outline"></ion-icon>
+  </ion-avatar>
+
+  <ion-button class="photo-btn" shape="round" mode="ios" size="small" (click)="takeImage()">
+    <ion-icon  name="camera-outline"></ion-icon>
+  </ion-button>
+
+<h2>{{user().name}}</h2>
+
+
+
+
+<ion-content>
+  
+  <h2 class="titulo">Nombre</h2>
+  <ion-item>
+    <ion-input [value]="user().name" readonly="true"></ion-input>
+    
+  </ion-item>
+ 
+  
+    
+  <h2 class="titulo">Correo</h2>
+  <ion-item>
+    <!-- Mostrar correo solo como texto, sin opción de edición -->
+    <ion-input [value]="user().email" readonly="true"></ion-input>
+  </ion-item>
+
+
+
+</ion-content>
+
+</ion-content>

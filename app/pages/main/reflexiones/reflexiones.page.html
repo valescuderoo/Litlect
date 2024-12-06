@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Mis Reflexiones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-spinner *ngIf="loading" name="crescent" class="loading-spinner"></ion-spinner>
+
+  <div *ngIf="!loading && reflections.length === 0" class="no-reflections">
+    <ion-text color="medium">
+      <h2>No hay reflexiones disponibles.</h2>
+    </ion-text>
+  </div>
+
+  <ion-list *ngIf="!loading && reflections.length > 0">
+    <ion-item *ngFor="let reflection of reflections">
+      <ion-label>
+        <h2 class="product-name">{{ reflection.productName }}</h2>
+        <p>{{ reflection.text }}</p>
+        <small>{{ reflection.createdAt?.toDate() | date }}</small>
+      </ion-label>
+      <ion-buttons slot="end">
+        <!-- Botón para eliminar la reflexión -->
+        <ion-button color="danger" (click)="deleteReflection(reflection)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

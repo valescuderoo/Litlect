@@ -1,0 +1,85 @@
+<app-header [isModal]="true" [title]="product ? 'Actualizar Producto' : 'Agregar Libro'"></app-header>
+<ion-content>
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+        
+        <ion-avatar *ngIf="form.value.image">
+            <img [src]="form.value.image" />
+        </ion-avatar>
+
+        <!-- no existe una imagen -->
+        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+        <br>
+        <!-- tomar o seleccionar una imagen -->
+        <ion-button (click)="takeImage()" size="small" shape="round">
+            Tomar/seleccionar
+        </ion-button>
+
+        <!-- titulo -->
+        <app-custom-input 
+            autocomplete="name"
+            [control]="form.controls.name"
+            type="text"
+            label="Titulo">
+        </app-custom-input>
+        
+        <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+            <div *ngIf="form.controls.name.errors?.['required']">El titulo es requerido</div>
+            <div *ngIf="form.controls.name.errors?.['minlength']">El titulo debe tener al menos 4 caracteres</div>
+        </div>
+
+        <!-- autor -->
+        <app-custom-input 
+            autocomplete="autor"
+            [control]="form.controls.autor"
+            type="text"
+            label="Autor">
+        </app-custom-input>
+      
+        <div class="validators" *ngIf="form.controls.autor.errors && form.controls.autor.touched">
+            <div *ngIf="form.controls.autor.errors?.['required']">El autor es requerido</div>
+            <div *ngIf="form.controls.descripcion.errors?.['minlength']">El autor debe tener al menos 6 caracteres</div>
+        </div>
+
+
+        <!-- descripcion -->
+        <app-custom-input 
+            autocomplete="descripcion"
+            [control]="form.controls.descripcion"
+            type="text"
+            label="Descripcion">
+        </app-custom-input>
+      
+        <div class="validators" *ngIf="form.controls.descripcion.errors && form.controls.descripcion.touched">
+            <div *ngIf="form.controls.descripcion.errors?.['required']">La descripcion es requerida</div>
+            <div *ngIf="form.controls.descripcion.errors?.['minlength']">La descripcion debe tener al menos 20 caracteres</div>
+        </div>
+
+        
+
+        <!-- categoria (select) -->
+        
+        <ion-select formControlName="categoria" placeholder="Seleccione una categoría" interface="popover" style="color: white;">
+            <ion-select-option value="Romance/Drama">Romance/Drama</ion-select-option>
+            <ion-select-option value="Ciencia/Ficcion">Ciencia/Ficción</ion-select-option>
+            <ion-select-option value="Misterio/Thriller">Misterio/Thriller</ion-select-option>
+            <ion-select-option value="Poesia">Poesía</ion-select-option>
+            <ion-select-option value="Fantasia">Fantasía</ion-select-option>
+            <ion-select-option value="Historia">Historia</ion-select-option>
+            <!-- Agrega más opciones según sea necesario -->
+        </ion-select>
+        
+        <div class="validators" *ngIf="form.controls.categoria.errors && form.controls.categoria.touched">
+            <div *ngIf="form.controls.categoria.errors?.['required']" style="color: white;">
+              Por favor, seleccione una categoría.
+            </div>
+          </div>
+          
+          
+        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+            {{product ? 'Actualizar Producto' : 'Agregar Libro'}}
+            <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+  
+    </form>
+</ion-content>

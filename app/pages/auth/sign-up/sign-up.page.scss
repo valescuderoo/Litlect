@@ -1,0 +1,30 @@
+ion-button {
+    --background: #9b6fe2; /* Color morado para el fondo */
+    --color: white; /* Color blanco para el texto */
+    --border-color: #9b6fe2; /* Color del borde */
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  ion-button[disabled] {
+    --background: #d3d3d3; /* Gris para botones deshabilitados */
+    --color: #ffffff;
+    --border-color: #d3d3d3;
+  }
+  
+  ion-button[fill="outline"] {
+    --background: transparent;
+    --color: #9b6fe2; /* Color morado para el texto */
+    --border-color: #9b6fe2;
+  }
+  /* Estilo para el texto del enlace */
+.forgot-password-link {
+    color: #9b6fe2; /* Color morado */
+    font-size: 14px; /* Tamaño de fuente */
+    text-decoration: underline; /* Subrayado para hacerlo más llamativo */
+  }
+  
+  /* Si quieres cambiar el color al pasar el mouse sobre el enlace */
+  .forgot-password-link:hover {
+    color: #7a4fbf; /* Color morado más oscuro */
+  }
+  
