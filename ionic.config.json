@@ -1,0 +1,7 @@
+{
+  "name": "ReflexionesApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
